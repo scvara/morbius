@@ -1,0 +1,171 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.overlay {
+  @include absolute-fill;
+  @include flex-center;
+  position: fixed;
+  background: $color-bg-overlay;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: $z-modal-overlay;
+  animation: fadeIn $transition-normal;
+}
+
+.modal {
+  @include glass-bg;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  padding: 40px 32px 32px;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+  z-index: $z-modal;
+  animation: slideUp $transition-normal;
+
+  @include mobile {
+    width: 95%;
+    padding: 32px 20px 24px;
+  }
+}
+
+.closeButton {
+  @include button-base;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  color: $color-text-muted;
+
+  &:hover {
+    color: $color-text;
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.title {
+  @include text-display(1.5rem);
+  text-align: center;
+  margin: 0 0 28px;
+  color: $color-accent;
+}
+
+.setting {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.settingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.label {
+  @include text-body(0.95rem);
+  color: $color-text;
+}
+
+.value {
+  @include text-body(0.85rem);
+  color: $color-text-muted;
+  min-width: 40px;
+  text-align: right;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: $color-accent;
+    cursor: pointer;
+    transition: transform $transition-fast;
+    box-shadow: 0 0 8px rgba(196, 163, 90, 0.3);
+  }
+
+  &::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 50%;
+    background: $color-accent;
+    cursor: pointer;
+  }
+
+  &:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+  }
+}
+
+.toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background $transition-fast;
+}
+
+.toggleOn {
+  background: $color-accent;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: $color-text;
+  transition: transform $transition-fast;
+  transform: translateX(0);
+  pointer-events: none;
+
+  .toggleOn & {
+    transform: translateX(22px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

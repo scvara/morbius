@@ -1,0 +1,225 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.backdrop {
+  @include absolute-fill;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(107, 91, 123, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(196, 163, 90, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(107, 91, 123, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0a0f 0%, #0f0f18 50%, #0a0a0f 100%);
+  z-index: -1;
+
+  &::after {
+    content: "";
+    @include absolute-fill;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4a35a' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+}
+
+.settingsButton {
+  @include button-base;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: $color-text-muted;
+  z-index: $z-header;
+
+  &:hover {
+    color: $color-accent;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: $shadow-glow;
+  }
+
+  @include mobile {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.content {
+  @include flex-center;
+  flex-direction: column;
+  gap: 60px;
+  padding: 40px 24px;
+  animation: fadeInUp 1s ease both;
+
+  @include tablet {
+    gap: 48px;
+  }
+
+  @include mobile {
+    gap: 40px;
+    padding: 24px 16px;
+  }
+}
+
+.logoContainer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoImage {
+  width: 280px;
+  height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 30px rgba(196, 163, 90, 0.15));
+
+  @include tablet {
+    width: 220px;
+    margin-bottom: 16px;
+  }
+
+  @include mobile {
+    width: 180px;
+    margin-bottom: 12px;
+  }
+}
+
+.logo {
+  font-family: $font-display;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 40px rgba(196, 163, 90, 0.2);
+  line-height: 1;
+
+  @include tablet {
+    font-size: 2.6rem;
+  }
+
+  @include mobile {
+    font-size: 2.1rem;
+  }
+}
+
+.subtitle {
+  @include text-body(1rem);
+  color: $color-text-muted;
+  margin: 12px 0 0;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+
+  @include mobile {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 280px;
+
+  @include mobile {
+    max-width: 240px;
+    gap: 12px;
+  }
+}
+
+.primaryButton {
+  @include button-base;
+  width: 100%;
+  padding: 16px 32px;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  color: $color-bg;
+  background: $color-accent;
+  border-radius: $radius-md;
+
+  &:hover {
+    background: $color-accent-hover;
+    box-shadow: $shadow-glow;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @include mobile {
+    padding: 14px 28px;
+    font-size: 1.05rem;
+  }
+}
+
+.secondaryButton {
+  @include button-base;
+  width: 100%;
+  padding: 14px 32px;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  color: $color-text-muted;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+
+  &:hover {
+    color: $color-text;
+    border-color: $color-accent;
+    background: rgba(196, 163, 90, 0.05);
+  }
+
+  @include mobile {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.footerLink {
+  @include button-base;
+  @include text-body(0.8rem);
+  color: rgba(255, 255, 255, 0.2);
+  background: transparent;
+  padding: 4px 12px;
+  border-radius: $radius-sm;
+
+  &:hover {
+    color: $color-text-muted;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

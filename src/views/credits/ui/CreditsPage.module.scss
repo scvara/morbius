@@ -1,0 +1,224 @@
+@use "@/shared/styles/variables" as *;
+@use "@/shared/styles/mixins" as *;
+
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.backdrop {
+  @include absolute-fill;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(196, 163, 90, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(107, 91, 123, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #08080d 0%, #0c0c14 50%, #08080d 100%);
+  z-index: -1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 24px;
+  animation: creditsAppear 1.5s ease both;
+
+  @include tablet {
+    gap: 32px;
+  }
+
+  @include mobile {
+    gap: 28px;
+    padding: 24px 16px;
+  }
+}
+
+.titleBlock {
+  text-align: center;
+  animation: fadeSlideUp 1s ease 0.3s both;
+}
+
+.label {
+  @include text-body(0.85rem);
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin: 0 0 12px;
+
+  @include mobile {
+    font-size: 0.75rem;
+  }
+}
+
+.title {
+  font-family: $font-display;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 40px rgba(196, 163, 90, 0.15);
+
+  @include tablet {
+    font-size: 2.8rem;
+  }
+
+  @include mobile {
+    font-size: 2.2rem;
+  }
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: $color-accent;
+  margin: 20px auto 0;
+  opacity: 0.5;
+}
+
+.authorBlock {
+  text-align: center;
+  animation: fadeSlideUp 1s ease 0.6s both;
+}
+
+.authorLabel {
+  @include text-body(0.8rem);
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 8px;
+}
+
+.authorName {
+  font-family: $font-display;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: $color-text;
+  margin: 0;
+
+  @include mobile {
+    font-size: 1.2rem;
+  }
+}
+
+.downloadBlock {
+  animation: fadeSlideUp 1s ease 0.9s both;
+}
+
+.downloadLink {
+  @include button-base;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-family: $font-body;
+  font-weight: 400;
+  color: $color-accent;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  text-decoration: none;
+  gap: 8px;
+
+  &:hover {
+    border-color: $color-accent;
+    background: rgba(196, 163, 90, 0.06);
+    box-shadow: $shadow-glow;
+  }
+
+  @include mobile {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 240px;
+  animation: fadeSlideUp 1s ease 1.2s both;
+}
+
+.primaryButton {
+  @include button-base;
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  color: $color-bg;
+  background: $color-accent;
+  border-radius: $radius-md;
+
+  &:hover {
+    background: $color-accent-hover;
+    box-shadow: $shadow-glow;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @include mobile {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+.secondaryButton {
+  @include button-base;
+  width: 100%;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: $color-text-muted;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+
+  &:hover {
+    color: $color-text;
+    border-color: $color-accent;
+    background: rgba(196, 163, 90, 0.04);
+  }
+
+  @include mobile {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 24px;
+  @include text-body(0.8rem);
+  color: rgba(255, 255, 255, 0.12);
+  margin: 0;
+  animation: fadeSlideUp 1s ease 1.5s both;
+}
+
+@keyframes creditsAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
