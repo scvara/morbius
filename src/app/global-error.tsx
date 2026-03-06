@@ -9,7 +9,7 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <h2>Что-то пошло не так</h2>
+        <h2>Ошибка! Что-то пошло не так</h2>
         <button onClick={() => reset()}>Попробовать снова</button>
       </body>
     </html>
