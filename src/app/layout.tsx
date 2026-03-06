@@ -17,7 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Novella — Интерактивная история",
-  description: "Погрузитесь в интерактивную историю и раскройте тайны старинного замка",
+  description: "Погрузитесь в интерактивную историю",
 };
 
 export const viewport: Viewport = {
