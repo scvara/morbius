@@ -4,12 +4,13 @@ import { useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useGameStore } from "@/entities/story";
 import { useAudio } from "@/shared/lib/useAudio";
+import { asset } from "@/shared/lib/asset";
 import styles from "./CreditsPage.module.scss";
 
 export function CreditsPage() {
   const router = useRouter();
   const { resetGame } = useGameStore();
-  const { play, stop } = useAudio({ src: "/sounds/titles.mp3", fadeInMs: 2000 });
+  const { play, stop } = useAudio({ src: asset("/sounds/titles.mp3"), fadeInMs: 2000 });
 
   useEffect(() => {
     play();
@@ -45,7 +46,7 @@ export function CreditsPage() {
 
         <div className={styles.downloadBlock}>
           <a
-            href="/novella.docx"
+            href={asset("/novella.docx")}
             download="Сон_Мёбиуса.docx"
             className={styles.downloadLink}
           >

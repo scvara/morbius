@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useGameStore } from "@/entities/story";
 import { useAudio } from "@/shared/lib/useAudio";
+import { asset } from "@/shared/lib/asset";
 import { SettingsModal } from "@/widgets/settings-modal";
 import styles from "./StartPage.module.scss";
 
@@ -13,7 +14,7 @@ export function StartPage() {
   const { hasSavedGame, resetGame, setStep, currentStep } = useGameStore();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { play, stop } = useAudio({ src: "/sounds/intro.mp3" });
+  const { play, stop } = useAudio({ src: asset("/sounds/intro.mp3") });
 
   useEffect(() => {
     setMounted(true);

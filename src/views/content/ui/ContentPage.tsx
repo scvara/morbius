@@ -4,6 +4,7 @@ import { useCallback, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useGameStore, storySteps } from "@/entities/story";
 import { useAudio } from "@/shared/lib/useAudio";
+import { asset } from "@/shared/lib/asset";
 import { SettingsModal } from "@/widgets/settings-modal";
 import { TextWindow } from "@/widgets/text-window";
 import { HotspotOverlay } from "@/widgets/hotspot";
@@ -24,12 +25,12 @@ export function ContentPage() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const novellaAudio = useAudio({
-    src: "/sounds/novella.mp3",
+    src: asset("/sounds/novella.mp3"),
     fadeInMs: 2000,
     fadeOutMs: 1500,
   });
   const finishAudio = useAudio({
-    src: "/sounds/finish.mp3",
+    src: asset("/sounds/finish.mp3"),
     fadeInMs: 2000,
     fadeOutMs: 1500,
   });
@@ -145,7 +146,7 @@ export function ContentPage() {
     <div className={`${styles.page} ${isFadingOut ? styles.fadeOut : ""}`}>
       <div
         className={styles.background}
-        style={{ backgroundImage: step.background }}
+        style={{ backgroundImage: `url('${asset(step.background)}')` }}
         key={step.background}
       >
         {isHotspotStep && step.hotspot && textComplete && !hotspotClicked && (
