@@ -62,7 +62,7 @@ export function StartPage() {
       <div className={styles.content}>
         <div className={styles.logoContainer}>
           <Image
-            src="/images/logo.webp"
+            src={asset("/images/logo.webp")}
             alt="Сон Мёбиуса"
             width={280}
             height={160}
